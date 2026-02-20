@@ -1,33 +1,49 @@
 #!/bin/bash
-#Disk Usage monitor code
+#Disk and Memory Usage monitor code
+
+# Color Codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+
+
 
 #DISK USAGE CODE
-echo ""
-DISK_THRESHOLD=15
 
-echo "Checking disk usage..."
+echo -e "${BLUE}==============================${NC}"
+echo -e "${BLUE}   System Monitoring Report   ${NC}"
+echo -e "${BLUE}==============================${NC}"
+echo "Date: $(date)"
+echo ""
+
+DISK_THRESHOLD=80
+
+echo -e ${YELLOW}"Checking disk usage...${NC}"
 DISK_USAGE=$(df -h | awk 'NR==2 {print $5}' | sed 's/%//')
 echo "Current disk usage: $DISK_USAGE%"
 
 if [ "$DISK_USAGE" -gt "$DISK_THRESHOLD" ]; then
-        echo "WARNING: DISK usage exceeded: ($DISK_USAGE%)"
+        echo -e ${RED}"WARNING: DISK usage exceeded: ($DISK_USAGE%)${NC}"
 else
-        echo "Disk usage is under control"
+        echo -e ${GREEN}"Disk usage is under control${NC}"
 fi
 echo ""
 
 
 #MEMORY MONITOR USAGE CODE
 
-MEMORY_THRESHOLD=10
+MEMORY_THRESHOLD=80
 
-echo "Checking memory usage..."
+echo -e ${YELLOW}"Checking memory usage...${NC}"
 MEMORY_USAGE=$(free | awk 'NR==2 {printf("%.0f"), $3/$2 * 100}')
 echo "Current memory usage: $MEMORY_USAGE"
 if [ "$MEMORY_USAGE" -gt "$MEMORY_THRESHOLD" ]; then
-	echo "WARNING: MEMORY usage exceeded threshold: $MEMORY_USAGE"
+	echo -e ${RED}"WARNING: MEMORY usage exceeded threshold: $MEMORY_USAGE${NC}"
 else
-	echo "Memory usage is under control"
+	echo -e ${GREEN}"Memory usage is under control${NC}"
 fi
 echo ""
 
