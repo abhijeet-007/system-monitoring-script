@@ -10,22 +10,4 @@ System Monitoring Script:
 
 
 
-Below is the flow:
-
-Start
-  ↓
-Print Header
-  ↓
-Check Disk Usage → Compare with Threshold → Alert if needed
-  ↓
-Check Memory Usage → Compare with Threshold → Alert if needed
-  ↓
-Display Top CPU Processes
-  ↓
-Display Top Memory Processes
-  ↓
-End
-
-
-
 
