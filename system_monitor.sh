@@ -9,7 +9,19 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 
+DISK_THRESHOLD=10
+MEMORY_THRESHOLD=10
 
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$SCRIPT_DIR/system_monitor.log"
+touch "$LOG_FILE"
+
+
+log_alert() {
+    echo "DEBUG: Function running"
+    echo "$(date) - $1" | tee -a "$LOG_FILE"
+}
 
 #DISK USAGE CODE
 
@@ -18,8 +30,6 @@ echo -e "${BLUE}   System Monitoring Report   ${NC}"
 echo -e "${BLUE}==============================${NC}"
 echo "Date: $(date)"
 echo ""
-
-DISK_THRESHOLD=70
 
 echo -e ${BLUE}"Disk Usage Monitoring${NC}"
 echo "------------------------------"
@@ -30,15 +40,15 @@ echo "Current disk usage: $DISK_USAGE%"
 
 if [ "$DISK_USAGE" -gt "$DISK_THRESHOLD" ]; then
         echo -e ${RED}"WARNING: DISK usage exceeded: ($DISK_USAGE%)${NC}"
+	log_alert "WARNING: DISK usage exceeded: ($DISK_USAGE%)"
 else
         echo -e ${GREEN}"Disk usage is under control${NC}"
+	log_alert "INFO: Disk usage normal ($DISK_USAGE%)"
 fi
 echo ""
 
 
 #MEMORY MONITOR USAGE CODE
-
-MEMORY_THRESHOLD=15
 
 echo -e ${BLUE}"Memory Usage Monitoring${NC}"
 echo "------------------------------"
@@ -48,8 +58,10 @@ MEMORY_USAGE=$(free | awk 'NR==2 {printf("%.0f"), $3/$2 * 100}')
 echo "Current memory usage: $MEMORY_USAGE"
 if [ "$MEMORY_USAGE" -gt "$MEMORY_THRESHOLD" ]; then
 	echo -e ${RED}"WARNING: MEMORY usage exceeded threshold: $MEMORY_USAGE${NC}"
+	log_alert "WARNING: Memory usage exceeded ($MEMORY_USAGE%)"
 else
 	echo -e ${GREEN}"Memory usage is under control${NC}"
+	log_alert "INFO: Memory usage normal ($MEMORY_USAGE%)"
 fi
 echo ""
 
@@ -57,18 +69,19 @@ echo -e ${BLUE}"Top CPU & Memory Processes${NC}"
 echo "------------------------------"
 
 echo -e ${YELLOW}"Top 5 CPU Consuming Processes:${NC}"
-ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -n 6
+TOP_CPU=$(ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -n 6)
+echo "$TOP_CPU"
+log_alert="Top 5 CPU Processes:"
+echo "$TOP_CPU" >> "$LOG_FILE"
 
-echo ""
 echo -e ${YELLOW}"Top 5 Memory Consuming Processes:${NC}"
-ps -eo pid,ppid,cmd,%mem --sort=-%mem | head -n 6
+TOP_MEM=$(ps -eo pid,ppid,cmd,%mem --sort=-%mem | head -n 6)
+echo "$TOP_MEM"
+log_alert="Top 5 Memory usage:"
+echo "$TOP_MEM" >> "$LOG_FILE"
 
-
-echo ""
-echo -e ${GREEN}"Monitoring Completed.${NC}"
-echo ""
-
-
-
+#echo ""
+#END=$(echo -e ${GREEN}"Monitoring Completed.${NC}")
+#echo "$END >> "$LOG_FILE"
 
 
