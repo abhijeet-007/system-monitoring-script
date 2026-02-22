@@ -36,7 +36,7 @@ Top 5 Memory Consuming Processes:
    5119    4333 /usr/libexec/mutter-x11-fra  1.9
    4606    1758 /usr/libexec/evolution-data  1.4
 
-
+Monitoring Completed.
 
 
 
