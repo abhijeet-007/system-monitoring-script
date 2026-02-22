@@ -1,14 +1,16 @@
-Sun Feb 22 12:48:27 PM IST 2026 - WARNING: DISK usage exceeded: (43%)
-Sun Feb 22 12:48:27 PM IST 2026 - WARNING: Memory usage exceeded (20%)
+2026-02-22 17:21:52 - INFO: Disk usage normal (44%)
+2026-02-22 17:21:52 - INFO: Memory usage normal (28%)
+2026-02-22 17:21:52 - Top 5 CPU Processes:
     PID    PPID CMD                         %CPU
-   2319    2318 ps -eo pid,ppid,cmd,%cpu --  133
-   2300    1777 bash system_monitor.sh       6.0
-   2163       1 /usr/libexec/packagekitd     5.6
-   1776    1751 sshd-session: abhijeet@pts/  1.8
-   1084    1007 /usr/bin/gnome-shell         0.8
+   3901    1760 /usr/bin/gnome-software --g  1.0
+   3481    1760 /usr/bin/gnome-shell         0.8
+   1776    1751 sshd-session: abhijeet@pts/  0.4
+   3654    3607 /usr/libexec/ibus-extension  0.1
+   6836    6832 sshd-session: abhijeet@pts/  0.1
+2026-02-22 17:21:52 - Top 5 Memory usage:
     PID    PPID CMD                         %MEM
-   1084    1007 /usr/bin/gnome-shell         5.2
-   2163       1 /usr/libexec/packagekitd     2.3
-   1820    1184 /usr/bin/python3 /usr/share  2.0
-    795       1 /usr/bin/python3 -sP /usr/b  1.0
-   1719    1007 /usr/libexec/xdg-desktop-po  0.9
+   3481    1760 /usr/bin/gnome-shell         8.0
+   3901    1760 /usr/bin/gnome-software --g  3.9
+   4646    3607 /usr/bin/python3 /usr/share  2.0
+   4328    3481 /usr/libexec/mutter-x11-fra  1.9
+   3894    1760 /usr/libexec/evolution-data  1.4
