@@ -81,5 +81,23 @@ Threshold-based alerting
 Logging best practices
 Cron-based scheduling.
 
+Sample Output:
+
+2026-02-22 18:43:25 - INFO: Disk usage normal (44%)
+2026-02-22 18:43:25 - INFO: Memory usage normal (28%)
+2026-02-22 18:43:25 - Top 5 CPU Processes:
+    PID    PPID CMD                         %CPU
+   8236    8235 ps -eo pid,ppid,cmd,%cpu --  100
+   3901    1760 /usr/bin/gnome-software --g  0.4
+   3481    1760 /usr/bin/gnome-shell         0.4
+   7812    7808 sshd-session: abhijeet@pts/  0.1
+    705       1 /usr/bin/VBoxDRMClient       0.0
+2026-02-22 18:43:25 - Top 5 Memory usage:
+    PID    PPID CMD                         %MEM
+   3481    1760 /usr/bin/gnome-shell         8.1
+   3901    1760 /usr/bin/gnome-software --g  4.0
+   4646    3607 /usr/bin/python3 /usr/share  2.0
+   4328    3481 /usr/libexec/mutter-x11-fra  1.9
+   3894    1760 /usr/libexec/evolution-data  1.4
 
 
