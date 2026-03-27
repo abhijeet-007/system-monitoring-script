@@ -8,7 +8,7 @@ System Monitoring Script:
 - Top memory-consuming processes
 - Logs alerts to a file
 
-🖥️ System Monitoring & Alerting Script
+🖥️ System Monitoring & Alerting Script.
 
 A Bash-based system monitoring tool that automatically checks system health metrics, logs results, and sends email alerts when resource usage crosses defined thresholds.
 📌 What This Script Does
